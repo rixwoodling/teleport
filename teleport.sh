@@ -41,7 +41,8 @@ function target_check {
 function teleport {
     # copy to target then delete source
     scp -rp $dn/$bn $ipvar:$dn &&
-    rm $dn/$bn
+    if [ -f "$dn/$bn" ]; then \rm $dn/$bn &> /dev/null; fi
+    if [ -d "$dn/$bn" ]; then \rm -rf $dn/$bn &> /dev/null; fi
 }
 
 ### main ###
