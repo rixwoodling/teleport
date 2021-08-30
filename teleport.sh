@@ -20,8 +20,7 @@ function ip_check {
     read -p "enter target ip: " ipvar
     ping -c1 -w2 $ipvar &> /dev/null
     if [ $? -eq 0 ]; then :
-    else
-        echo "target ip timed out"; exit 1
+    else echo "target ip timed out"; exit 1
     fi
 }
 
@@ -40,7 +39,7 @@ function target_check {
 }
 
 function teleport {
-    scp -rp $dn/$bn $ipvar:$dn
+    scp -rp $dn/$bn $ipvar:$dn &&
     rm $bn
 }
 
