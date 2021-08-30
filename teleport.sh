@@ -9,8 +9,8 @@
 function arg_check {
     # validate all arguments
     for i in "$@"; do
-        if [ -e "$i" ]; then :
-        else echo "invalid files or folders"; exit 1
+        if [ -e ./"$i" ]; then :
+        else echo "file not found"; exit 1
         fi
     done
 }
