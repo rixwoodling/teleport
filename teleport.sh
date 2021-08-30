@@ -34,8 +34,8 @@ function source_var {
 
 function target_check {
     # if dir doesn't exist, create it over ssh
-    if ssh $ipvar "[ -d $dn ]"; then :
-    else ssh $ipvar "mkdir -p $dn"; fi
+    if ssh $ipvar "[ -d $dn ]" &> /dev/null; then :
+    else ssh $ipvar "mkdir -p $dn" &> /dev/null; fi
 }
 
 function teleport {
