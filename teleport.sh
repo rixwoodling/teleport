@@ -58,8 +58,6 @@ elif [ $# -gt 0 ]; then
         target_check     # if dir doesn't exist, create it over ssh
         teleport         # copy to target then delete source
         var=$@
-        echo "teleporting $var over to $ipvar"
-        # ...
     elif [ $# -gt 1 ]; then
         echo "one file at a time on the teleporter"
         exit 1
