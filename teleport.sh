@@ -3,6 +3,7 @@
 # teleport a file from one computer to another
 # https://github.com/rixwoodling/teleport/issues
 
+# *** BE AWARE THIS SCRIPT REMOVES FILES! *** #
 
 ### functions ###
 
