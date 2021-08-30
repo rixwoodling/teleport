@@ -1,1 +1,52 @@
+teleport v1
+
+# *** BE AWARE THIS SCRIPT REMOVES FILES! *** #
+
+
+### installation ###
+
+
+
+### FAQ ###
+
+Q: Why should i use this script?
+If you regularly need to copy files to another computer and have no need for the original copy, this is for you.
+
+Q: What does this script do?
+This script copies a file or folder over to another computer over ssh and then removes the original file after transfer. Simplifying the task of performing a secure copy to another system is what this does while also automating some error checks, such as: folder/file verification, target ip verification, target directory verification and directory creation if needed. 
+
+Consider moving 'file.txt' from computer A to computer B manually:
+
+    # typically, a secure copy command would go something like this:
+    scp -rp /home/$USER/folder/A/file.txt $USER@192.168.1.200:/home/$USER/folder/
+
+    # however, if the parent folders do not exist on the target, they must be created first
+    ssh $ipvar "mkdir -p /home/$USER/folder/A"
+
+    # the removal of the original file is another step that is performed
+    rm /home/$USER/folder/A/file.txt
+    
+This script performs all of these manual steps as a simple frontend on the command line:
+    
+    # execute teleport.sh if inside the source directory, using program alias, is a simple as this:
+    teleport file.txt
+
+    # it will ask for target ip, then target password one or twice if not using ssh-keys
+    # if all goes well, 'file.txt' will have been copied to computer B and will not exist on computer A
+    # if any errors do occur, they will be given an exit code of 1
+
+Q: What does this script not do?
+BE AWARE that this script does not intend to keep the original file once it has been successfully transfered to the target computer. However, if the file transfer has not successfully completed, then the original file is not removed. 
+
+Q: What features are likely to be added in the future?      
+While this script already has decent error handling performance, more robust handling of errors is on the to-do. For example, not being able to create folders on the target computer due to no write permissions is not tested for. Adding support for to send to a different user may also be a future option.  
+
+Q: What is the license on this thing?
+Right now this is 'unlicensed' but that will change in the near future.
+
+Q: Where are issues submitted?
+Issues can be submitted to: https://github.com/rixwoodling/teleport/issues
+
+
+
 
