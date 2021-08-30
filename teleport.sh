@@ -39,6 +39,7 @@ function target_check {
 }
 
 function teleport {
+    # copy to target then delete source
     scp -rp $dn/$bn $ipvar:$dn &&
     rm $bn
 }
@@ -50,10 +51,10 @@ if [ $# -eq 0 ]; then
     echo "nothing to teleport"; exit 1
 elif [ $# -gt 0 ]; then
     if [ $# -eq 1 ]; then
-        arg_check "$@"   # verify arguments
+        arg_check "$@"   # verify all arguments
         ip_check         # prompt for target ip
-        source_var "$@"  # get working directory
-        target_check     # create target directory if missing
+        source_var "$@"  # get working directory of first argument
+        target_check     # if dir doesn't exist, create it over ssh
         teleport         # copy to target then delete source
         var=$@
         echo "teleporting $var over to $ipvar"
